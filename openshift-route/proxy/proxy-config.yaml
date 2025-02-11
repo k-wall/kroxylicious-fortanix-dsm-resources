@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxy-config
+data:
+  config.yaml: |
+    adminHttp:
+      port: 9190
+      endpoints:
+        prometheus: {}
+    virtualClusters:
+      my-cluster-proxy:
+        # the virtual cluster is kafka proxy that sits between kafka clients and the real kafka cluster.  clients
+        # connect to the virtual cluster rather than real cluster.
+        clusterNetworkAddressConfigProvider:
+          type: SniRoutingClusterNetworkAddressConfigProvider
+          config:
+            bootstrapAddress: proxy-bootstrap-kafka-proxy.apps.rosa.utay6-yia98-jfk.4akp.p3.openshiftapps.com:9092
+            advertisedBrokerAddressPattern: proxy-broker-$(nodeId)-kafka-proxy.apps.rosa.utay6-yia98-jfk.4akp.p3.openshiftapps.com:443
+        tls:
+          key:
+            storeFile: /opt/kroxylicious/server/key-material/keystore.p12
+            storePassword:
+              passwordFile: /opt/kroxylicious/server/keystore-password/storePassword
+        targetCluster:
+          # declares the kafka cluster that is being proxied
+          bootstrap_servers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+        logFrames: false
+    defaultFilters:
+    - encrypt
+    filterDefinitions:
+    - type: RecordEncryption
+      name: encrypt
+      config:
+        # User: uncomment this section if you are using Vault.
+        kms: FortanixDsmKmsService
+        kmsConfig:
+          endpointUrl: https://api.uk.smartkey.io
+          apiKeySessionProvider:
+            apiKey:
+              passwordFile: /opt/proxy/encryption/kms-secrets/token.txt
+        selector: TemplateKekSelector
+        selectorConfig:
+          template: "KEK_${topicName}"

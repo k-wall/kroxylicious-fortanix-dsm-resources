@@ -1,0 +1,25 @@
+- op: add
+  path: /spec/template/spec/volumes/2
+  value:
+    name: kroxy-server-key-material-volume
+    secret:
+      secretName: kroxy-server-key-material
+- op: add
+  path: /spec/template/spec/volumes/3
+  value:
+    name: kroxy-server-keystore-password-volume
+    secret:
+      secretName: kroxy-server-keystore-password
+- op: add
+  path: /spec/template/spec/containers/0/volumeMounts/2
+  value:
+    mountPath: /opt/proxy/encryption/kms-secrets/token.txt
+    name: kroxy-server-key-material-volume
+    readOnly: true
+    mountPath: /opt/kroxylicious/server/key-material
+- op: add
+  path: /spec/template/spec/containers/0/volumeMounts/3
+  value:
+    name: kroxy-server-keystore-password-volume
+    readOnly: true
+    mountPath: /opt/kroxylicious/server/keystore-password

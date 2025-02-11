@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: proxy-broker-0
+spec:
+  port:
+    targetPort: 9092
+  tls:
+    termination: passthrough 
+  to:
+    kind: Service
+    name: proxy-service
