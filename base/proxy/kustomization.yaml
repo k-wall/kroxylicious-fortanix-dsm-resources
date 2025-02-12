@@ -12,9 +12,4 @@ resources:
 
 
 components:
-# User: uncomment this line if you are using Fortanix
 - ../../kms/fortanix-dsm
-# User: uncomment this line if you are using AWS.
-#- ../../kms/aws
-# User: uncomment this line if you are using Vault.
-#- ../../kms/vault
