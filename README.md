@@ -9,10 +9,10 @@ with your own application.
 
 The Record Encryption filter requires a Key Management System (KMS). In this demo, we choose to use the Fortanix DSM(tm) integration.
 
-Follow the [KMS preparation instructions](./PREPARE_KMS.md) then proceed to deploy one of the examples.  Each example configures ingress to the proxy to suit a
-different use-case.
+After making a local clone of this repo, first follow the [KMS preparation instructions](./PREPARE_KMS.md) then proceed to deploy one of the examples. Each example configures ingress to the proxy to suit a different use-case.
 
 * [Cluster IP](./cluster-ip) (for on-cluster).
 * [External Load Balancer](./load-balancer) (for off-cluster using a Load Balancer Service).
 * [OpenShift Route](./openshift-route) (for off-cluster using OpenShift Routes).
 
+Note that all these examples assume that the current working directory of your shell is the root of the cloned repository.

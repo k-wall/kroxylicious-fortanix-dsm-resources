@@ -14,8 +14,7 @@ You must have:
 And the following tools
 * Python 3 (for the Fortanix CLI)
 * OpenShift Client
-* GNU sed
-* jq
+* GNU sed (if you are on a Mac and have gnu-sed installed from Brew, use `gsed` rather than `sed`).
 
 ### Installing the Fortanix DSM CLI
 

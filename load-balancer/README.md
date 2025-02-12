@@ -13,7 +13,7 @@ Tools:
 * OpenShift CLI (`oc`)
 * Apache Kafka CLI tools (`kafka-topics.sh`, `kafka-console-producer.sh`, and `kafka-console-consumer.sh`) found in the `bin` directory of the Streams for Apache Kafka on RHEL distribution.
 * Fortanix DSM CLI.
-* GNU `sed`
+* GNU `sed` (if you are on a Mac and have gnu-sed installed from Brew, use `gsed` rather than `sed`).
 
 # Deploying the Example
 
