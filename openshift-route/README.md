@@ -28,7 +28,7 @@ Tools:
    ```
 2. Now update the config to use the domain
    ```sh
-     sed -i  "s|apps.[a-z0-9.]*.openshiftapps.com|${DOMAIN}|g" openshift-route/proxy/proxy-config.yaml openshift-route/proxy/server-certificate.yaml
+     sed -i  "s|apps.[a-z0-9.-]*.openshiftapps.com|${DOMAIN}|g" openshift-route/proxy/proxy-config.yaml openshift-route/proxy/server-certificate.yaml
    ```
 3. Deploy the Example:
    ```sh
